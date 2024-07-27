@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #d2ecf1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: #97cdda;
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.input{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+#terms{
+  margin-right: 5px;
+}
+
+button {
+  background-color: #488fc9;
+  color: white;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+button:hover {
+  background-color: #3f7cc2;
+  color:black;
+}
+
+.terms {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.terms a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+.error {
+  color: red;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Register</h1>
+  <form>
+    <div>
+      <label for="fname">First Name</label>
+      <input class="input" type="text" id="fname" name="fname" placeholder="Your first name.." required>
+      <p class="error" id="fnameError"></p>
+    </div>
+    <div>
+      <label for="lname">Last Name</label>
+      <input class="input" type="text" id="lname" name="lname" placeholder="Your last name.." required>
+      <p class="error" id="lnameError"></p>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input class="input" type="email" id="email" name="email" placeholder="Your email.." required>
+      <p class="error" id="emailError"></p>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input class="input" type="password" id="password" name="password" placeholder="Your password.." required>
+      <p class="error" id="passError"></p>
+    </div>
+    <div>
+      <label for="confirm_password">Confirm Password</label>
+      <input class="input"type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password.." required>
+      <p class="error" id="cpassError"></p>
+    </div>
+    <div>
+      <input  type="checkbox" id="terms" name="terms">
+      <label for="terms"> I accept the <a href="#">Terms of Use</a> & <a href="#">Privacy Policy</a>.</label>
+      <p class="error" id="termsError"></p>
+    </div>
+    <button id="submit" type="submit">Register</button>
+  </form>
+</div>
+<script>
+        var fname = document.getElementById("fname");
+        var lname = document.getElementById("lname");
+        var email = document.getElementById("email");
+        var password = document.getElementById("password");
+        var confirmPassword = document.getElementById("confirm_password");
+        var terms = document.getElementById("terms");
+        var submit = document.getElementById("submit");
+
+        submit.addEventListener("click",function(event){
+          event.preventDefault();
+
+            var fnameError = document.getElementById("fnameError");
+            var lnameError = document.getElementById("lnameError");
+            var emailError = document.getElementById("emailError");
+            var passwordError = document.getElementById("passError");
+            var confirmPasswordError = document.getElementById("cpassError");
+            var termsError = document.getElementById("termsError");
+
+            var fnamestr = /^[a-zA-Z\s]+$/;
+            var lnamestr = /^[a-zA-Z\s]+$/;
+            var emailstr = /^[a-zA-Z0-9+*%#@]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+            var passwordstr = /^[a-zA-Z0-9!@#$%^&*]{6,12}$/;
+
+            if(fnamestr.test(fname.value)) {
+            fnameError.innerHTML="";
+            } else{
+              fnameError.innerHTML="*Invalid";
+            }
+
+            if(lnamestr.test(lname.value)){
+              lnameError.innerHTML="";
+            }else{
+              lnameError.innerHTML="*Invalid";
+            }
+
+            if(emailstr.test(email.value)){
+              emailError.innerHTML="";
+            }else{
+              emailError.innerHTML="*Invalid";
+            }
+
+            if(passwordstr.test(password.value)){
+              passwordError.innerHTML="";
+            }else{
+              passwordError.innerHTML="*Invalid";
+            }
+
+            if(confirmPassword.value != password.value){
+              confirmPasswordError.innerHTML="*Password do not match";
+            }
+            else{
+              confirmPasswordError.innerHTML="";
+            }
+
+            if (!terms.checked) {
+                termsError.textContent = "*You must accept the terms and conditions";
+            } else {
+                termsError.textContent = "";
+            }
+
+            if (fnameError.textContent === "" && lnameError.textContent === "" && emailError.textContent === "" && passwordError.textContent === "" && confirmPasswordError.textContent === "" && termsError.textContent === "") {
+                alert("Form submitted successfully");
+            }
+        });
+</script>
+</body>
+</html>

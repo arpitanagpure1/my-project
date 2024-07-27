@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #d3f6f4;
+      display: flex;
+justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+   .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+   .left {
+      padding: 10px;
+    }
+    .input {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button{
+      width: 100%;
+      height: 40px;
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: larger;
+      font-weight: bolder;
+    }
+    button:hover {
+      background-color: #3e8e41;
+    }
+    .forget-password {
+      color: #4CAF50;
+      text-decoration: none;
+      margin-bottom: 10px;
+      cursor: pointer;
+      float:right;
+    }
+    .forget-password:hover {
+      text-decoration: underline;
+    }
+    .remember-me {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .checkbox {
+      margin-right: 5px;
+    }
+    .error {
+  color: red;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <center><h2>Login to Your Account</h2></center>
+      <input class="input"type="text" placeholder="Email" id="Email"required>
+      <span class="error" id="emailError"></span>
+      <input class="input"type="password" placeholder="password" id="Password" required>
+      <span class="error" id="passError"></span>
+      <a href="#" class="forget-password">Forget Password?</a>
+      <div class="remember-me">
+        <input class="checkbox"type="checkbox" id="remember-me">
+        <label for="remember-me">Remember Me</label>
+      </div>
+      <button id="submit" type="submit">Log in</button> 
+  </div>
+  <script>
+      var email=document.getElementById("Email");
+      var password=document.getElementById("Password");
+
+      submit.addEventListener("click",function(event){
+        event.preventDefault();
+
+        var emailError=document.getElementById("emailError");
+        var passwordError=document.getElementById("passError");
+
+        var emailstr = /^[a-zA-Z0-9+*%#@]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/;
+        var passwordstr = /^[a-zA-Z0-9!@#$%^&*]{6,12}$/;
+
+        if(emailstr.test(email.value)){
+              emailError.innerHTML="";
+            }else{
+              emailError.innerHTML="*Invalid";
+            }
+
+        if(passwordstr.test(password.value)){
+            passwordError.innerHTML="";
+            }else{
+              passwordError.innerHTML="*Invalid";
+            }    
+
+        if(emailError.innerHTML===""&&passwordError.innerHTML==="")
+        {
+          alert("Login Successfully")
+        }
+      });
+  </script>
+</body>
+</html>
